@@ -1,0 +1,208 @@
+syntax = "proto3";
+
+package identity;
+
+message Empty {}
+
+message IdRequest {
+    string id = 1;
+}
+
+message Pagination {
+    int32 total =1 ;
+    int32 current_page = 2 ;
+    int32 page_size = 3;
+}
+
+message Resource {
+    string id = 1;
+    string name = 2;
+    string url = 3;
+}
+
+message CreateResourceRequest {
+    repeated Resource list = 1;
+}
+
+message ListResourcesRequest {
+    int32 current_page = 2 ;
+    int32 page_size = 3;
+    string search = 1;
+}
+
+message ListResourcesResponse {
+    repeated Resource resources = 1;
+}
+
+message UpdateResourceRequest {
+    string id = 1;
+    string name = 2;
+    string url = 3;
+}
+
+message SuccessResponse {
+    bool success = 1;
+}
+
+message GetResourcePermissionResponse {
+    message ResourcePermission {
+        string id = 1;
+        string name = 2;
+        string url = 3;
+        string permission = 4;
+    }
+    repeated ResourcePermission result = 1;
+}
+
+message Permission {
+    int32 id = 1;
+    string name = 2;
+    string created_at = 4;
+    Resource resource = 5;
+}
+
+message CreatePermission {
+    string name = 1;
+    string resource_id = 2;
+    string created_at = 3;
+}
+
+message UpdatePermission {
+    int32 id = 1;
+    string name = 2;
+}
+
+message ListPermissionsRequest {
+    int32 current_page = 2 ;
+    int32 page_size = 3;
+    string search = 1;
+}
+
+message ListPermissionsResponse {
+    repeated Permission permissions = 1;
+    Pagination pagination = 2;
+}
+
+message Role {
+    string id = 1;
+    string name = 2;
+    repeated Permission permissions = 3;
+    string created_at = 4;
+}
+
+message ListRoleRequest {
+    int32 current_page = 2 ;
+    int32 page_size = 3;
+    string search = 1;
+}
+
+message ListRoleResponse {
+    repeated Role roles = 1;
+    Pagination pagination = 2;
+}
+
+message CreateRole {
+    string name = 1;
+    repeated int32 permission_ids = 2;
+}
+
+message UpdateRole {
+    string id = 1;
+    string name = 2;
+    repeated int32 permission_ids = 3;
+}
+
+message UpdatePermissionRequest {
+    string id = 1;
+    string name = 2;
+    repeated int32 permission_ids = 3;
+}
+
+message AddPermissionToRoleRequest {
+    string role_id = 1;
+    int32 permission_id = 2;
+}
+
+message GetUserAuthorityResponse {
+    repeated string roles = 1;
+    repeated string permissions = 2;
+}
+
+message User {
+    string id = 1;
+    string firstname = 2;
+    string lastname = 3;
+    string email = 4;
+    optional string password = 5;
+    string primary_phone = 7;
+    string address = 9;
+    string zipcode = 10;
+    bool active = 11;
+    string created_at = 12;
+    string updated_at = 13;
+    repeated Role roles = 14;
+    string city = 15;
+    string state = 16;
+}
+
+message CreateUser {
+    string firstname = 2;
+    string lastname = 3;
+    string email = 4;
+    string password = 5;
+    string confirm_password = 12;
+    string primary_phone = 7;
+    string address = 9;
+    string zipcode = 10;
+    bool active = 11;
+    string city = 15;
+    string state = 16;
+}
+
+message ListUsersRequest {
+    int32 current_page = 2 ;
+    int32 page_size = 3;
+    string search = 1;
+}
+
+message LoginUserRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginUserResponse {
+    User user = 1;
+    GetUserAuthorityResponse authority = 2;
+    string token = 3;
+}
+
+message ListUsersResponse {
+    repeated User users = 1;
+    Pagination pagination = 2;
+}
+
+message UpdateUserRequest {
+    string id = 1;
+
+    string firstname = 2;
+
+    string lastname = 3;
+
+    string email = 4;
+
+    string password = 5;
+
+    string confirm_password = 12;
+
+    string primary_phone = 7;
+
+    string address = 9;
+
+    string zipcode = 10;
+
+    bool active = 11;
+
+    string city = 15;
+
+    string state = 16;
+}

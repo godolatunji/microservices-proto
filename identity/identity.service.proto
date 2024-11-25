@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package identity;
+
+import "identity/identity.proto";
+
+service IdentityService {
+  rpc CreateUser (identity.CreateUser) returns (identity.SuccessResponse) {}
+  rpc LoginUser (identity.LoginUserRequest) returns (identity.LoginUserResponse) {}
+  rpc GetUser (identity.IdRequest) returns (identity.User) {}
+  rpc UpdateUser (identity.UpdateUserRequest) returns (identity.SuccessResponse) {}
+  rpc DeleteUser (identity.IdRequest) returns (identity.SuccessResponse) {}
+  rpc ListUsers (identity.ListUsersRequest) returns (identity.ListUsersResponse) {}
+  rpc CreateResource (identity.CreateResourceRequest) returns (identity.SuccessResponse) {}
+  rpc GetResource (identity.IdRequest) returns (identity.Resource) {}
+  rpc UpdateResource (identity.UpdateResourceRequest) returns (identity.SuccessResponse) {}
+  rpc DeleteResource (identity.IdRequest) returns (identity.SuccessResponse) {}
+  rpc ListResources (identity.ListResourcesRequest) returns (ListResourcesResponse) {}
+  rpc CreatePermission (identity.CreatePermission) returns (identity.SuccessResponse) {}
+  rpc GetPermission (identity.IdRequest) returns (identity.Permission) {}
+  rpc UpdatePermission (identity.UpdatePermission) returns (identity.SuccessResponse) {}
+  rpc DeletePermission (identity.IdRequest) returns (identity.SuccessResponse) {}
+  rpc ListPermissions (identity.ListPermissionsRequest) returns (ListPermissionsResponse) {}
+  rpc CreateRole (identity.CreateRole) returns (identity.SuccessResponse) {}
+  rpc GetRole (identity.IdRequest) returns (identity.Role) {}
+  rpc UpdateRole (identity.UpdateRole) returns (identity.SuccessResponse) {}
+  rpc DeleteRole (identity.IdRequest) returns (identity.SuccessResponse) {}
+  rpc ListRoles (identity.ListRoleRequest) returns (identity.ListRoleResponse) {}
+  rpc AddPermissionToRole (identity.AddPermissionToRoleRequest) returns (identity.SuccessResponse) {}
+  rpc GetUserAuthority (identity.IdRequest) returns (identity.GetUserAuthorityResponse) {}
+}
